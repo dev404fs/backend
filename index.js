@@ -1,7 +1,13 @@
-const express = require('express')
+import express from "express"
 const app = express()
-const cors = require('cors')
+import cors from "cors"
 
+
+///DB///
+import dotenv from 'dotenv'
+dotenv.config()
+import Note from './models/note.js'
+//////
 const requestLogger = (request, response, next) => {
   console.log('Method:', request.method)
   console.log('Path:  ', request.path)
@@ -43,7 +49,9 @@ app.get('/', (req, res) => {
 })
 
 app.get('/api/notes', (req, res) => {
-  res.json(notes)
+  Note.find({}).then(notes => {
+    res.json(notes)
+  })
 })
 
 const generateId = () => {
@@ -96,7 +104,7 @@ app.delete('/api/notes/:id', (request, response) => {
 
 app.use(unknownEndpoint)
 
-const PORT = process.env.PORT || 3001
+const PORT = process.env.PORT
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`)
 })
