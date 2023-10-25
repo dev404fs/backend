@@ -2,7 +2,8 @@ module.exports = {
     'env': {
         'node': true,
         'commonjs': true,
-        'es2021': true
+        'es2021': true,
+        'jest': true
     },
     'extends': 'eslint:recommended',
     'overrides': [
@@ -11,10 +12,10 @@ module.exports = {
         'ecmaVersion': 'latest'
     },
     'rules': {
-        'indent': [
-            'error',
-            2
-        ],
+        //'indent': [
+        //    'error',
+        //    4
+        //],
         'linebreak-style': [
             'error',
             'unix'
